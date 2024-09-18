@@ -3,7 +3,7 @@ import json
 # Função para processar o faturamento diário
 def processar_faturamento(faturamento_diario):
     # Filtrar dias com faturamento (remover dias com faturamento 0)
-    faturamento_valido = [dia["faturamento"] for dia in faturamento_diario if dia["faturamento"] > 0]
+    faturamento_valido = [dia["valor"] for dia in faturamento_diario if dia["valor"] > 0]
 
     # Calcular o menor e o maior faturamento
     menor_faturamento = min(faturamento_valido)
@@ -21,7 +21,7 @@ def carregar_dados_arquivo(arquivo_json):
         dados = json.load(file)
     return dados
 
-faturamento_diario = carregar_dados_arquivo("faturamento.json")
+faturamento_diario = carregar_dados_arquivo("dados.json")
 menor_faturamento, maior_faturamento, dias_acima_da_media = processar_faturamento(faturamento_diario)
 
 print(f"Menor faturamento: {menor_faturamento}")
